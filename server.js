@@ -25,6 +25,7 @@ app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
 //If no route in /posts or /users were able to handle the request
+/*
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
@@ -39,6 +40,7 @@ app.use((error, req, res, next) => {
     }
   });
 });
+*/
 
 //Serve react build when on production
 if (process.env.NODE_ENV === "production") {
