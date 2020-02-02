@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const postRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
@@ -38,5 +39,14 @@ app.use((error, req, res, next) => {
     }
   });
 });
+
+//Serve react build when on production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(port, () => console.log(`Server is running on port: ${port}`));
