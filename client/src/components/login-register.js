@@ -31,11 +31,11 @@ export default class LoginRegister extends Component {
     axios
       .post("/user/register", { username, password })
       .then(() => {
+        this.changeModal();
         this.setState({
           msg: "Account created successfully",
           msgColor: "green"
         });
-        this.changeModal();
       })
       .catch(err => {
         console.log(err.response.data.message);

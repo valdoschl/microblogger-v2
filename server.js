@@ -24,24 +24,6 @@ app.use(express.json());
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
-//If no route in /posts or /users were able to handle the request
-/*
-app.use((req, res, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
-//Handle all errors thrown form anywhere
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message
-    }
-  });
-});
-*/
-
 //Serve react build when on production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
