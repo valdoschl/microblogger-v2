@@ -119,17 +119,19 @@ body {
   min-height: 120px;
   padding: 3px;
   border-bottom: 1px solid #27b9c3;
+  position: relative;
 }
 
 textarea {
   margin-top: 1%;
+  margin-bottom: 8%;
   background: transparent;
   border: none;
   outline: none;
   color: #bababa;
   overflow: hidden;
   width: 100%;
-  height: 100px;
+  height: 150px;
   padding: 12px 15px;
   box-sizing: border-box;
   border-radius: 4px;
@@ -137,10 +139,18 @@ textarea {
   font-size: 16px;
   resize: none;
 }
+.blog-post-error {
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-left: 12px;
+  color: red;
+}
 
 #blog-form button {
   margin: 2%;
-  margin-left: 85%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   margin-top: 10px;
   background-color: #27b9c3;
   border: none;

@@ -24,6 +24,11 @@ export default class LoginRegister extends Component {
 
         <form id="blog-form" onSubmit={this.props.submitPost}>
           <textarea id="blog-text" placeholder="write a microblog"></textarea>
+          {this.props.error && (
+            <p className="blog-post-error">
+              posts must be 1-500 characters long
+            </p>
+          )}
           <button type="submit">post</button>
         </form>
         <div id="posts">{this.renderPosts()}</div>

@@ -8,7 +8,8 @@ export default class App extends Component {
   state = {
     isLogged: false,
     token: localStorage.getItem("token"),
-    posts: []
+    posts: [],
+    postError: false
   };
 
   //On page reload check if there is valid token in local storage
@@ -42,19 +43,24 @@ export default class App extends Component {
   submitPost = e => {
     e.preventDefault();
     const post = document.getElementById("blog-text").value;
-    axios
-      .post(
-        "/posts",
-        { post },
-        {
-          headers: { Authorization: `Bearer ${this.state.token}` }
-        }
-      )
-      .then(() => {
-        document.getElementById("blog-text").value = "";
-        this.getPosts(this.state.token);
-      })
-      .catch(err => console.log(err));
+    if (post.length > 0 && post.length <= 500) {
+      this.setState({ postError: false });
+      axios
+        .post(
+          "/posts",
+          { post },
+          {
+            headers: { Authorization: `Bearer ${this.state.token}` }
+          }
+        )
+        .then(() => {
+          document.getElementById("blog-text").value = "";
+          this.getPosts(this.state.token);
+        })
+        .catch(err => console.log(err));
+    } else {
+      this.setState({ postError: true });
+    }
   };
 
   //Login and logout methods to be passed to components to change the state of the app
@@ -84,6 +90,7 @@ export default class App extends Component {
             renderPosts={this.renderPosts}
             logout={this.logout}
             submitPost={this.submitPost}
+            error={this.state.postError}
           />
         )}
         {!this.state.isLogged && <LoginRegister login={this.login} />}
