@@ -77,7 +77,8 @@ export default class App extends Component {
     this.setState({
       isLogged: false,
       token: "",
-      posts: []
+      posts: [],
+      postError: false
     });
   };
 
