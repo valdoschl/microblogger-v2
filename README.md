@@ -20,7 +20,7 @@ cd ..
 npm run dev
 ```
 
-## API
+## Backend routes
 
 ### Authentication
 
